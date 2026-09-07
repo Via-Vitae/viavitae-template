@@ -1,0 +1,96 @@
+# CODEOWNERS — default owner mapping
+#
+# Each line is a path pattern followed by one or more owners. Later patterns take
+# precedence over earlier ones, so the most specific rule wins. Owners are requested
+# for review automatically when a matching path changes in a pull request.
+#
+# Syntax reference: https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+#
+# ---------------------------------------------------------------------------
+# RULE R2 — CODEOWNERS IMMUTABILITY
+#
+# 1. This file is NEVER empty. An empty CODEOWNERS silently removes every
+#    required reviewer, so a pull request that empties it fails review by
+#    definition. The `*` rule below must always resolve to at least
+#    @Via-Vitae/architects.
+# 2. Overrides are allowed. Narrower path rules may add or replace owners for
+#    their subtree — that is the intended mechanism for giving security,
+#    compliance, legal and the DPO authority over their own paths.
+# 3. Removal requires compliance team approval. Deleting an owner, widening `*`,
+#    or changing the rules for /LICENSE, /SECURITY.md, /QODER.md,
+#    /.github/CODEOWNERS, /docs/DPIA-template.md or /.github/workflows/
+#    requires an approving review from @Via-Vitae/compliance in addition to
+#    the standard architect review. Record the reason as an ADR.
+# 4. Owners are teams, not individuals. Team membership changes without editing
+#    this file, which keeps the ownership map stable and auditable.
+# ---------------------------------------------------------------------------
+
+# --- Default owner for everything -------------------------------------------
+*                                       @Via-Vitae/architects
+
+# --- Platform: CI/CD, automation and repository configuration -----------------
+/.github/                               @Via-Vitae/platform @Via-Vitae/architects
+/.github/workflows/                     @Via-Vitae/platform @Via-Vitae/security
+/.github/CODEOWNERS                     @Via-Vitae/architects @Via-Vitae/compliance
+/.github/dependabot.yml                 @Via-Vitae/platform
+/.editorconfig                          @Via-Vitae/platform
+/.gitignore                             @Via-Vitae/platform @Via-Vitae/security
+
+# --- Compliance and privacy --------------------------------------------------
+/docs/gdpr/                             @Via-Vitae/compliance
+/docs/DPIA-template.md                  @Via-Vitae/compliance @Via-Vitae/dpo
+/docs/architecture.md                   @Via-Vitae/architects @Via-Vitae/compliance
+/docs/security/                         @Via-Vitae/security @Via-Vitae/compliance
+
+# --- Legal and policy --------------------------------------------------------
+/LICENSE                                @Via-Vitae/legal @Via-Vitae/architects
+/SECURITY.md                            @Via-Vitae/security @Via-Vitae/legal
+/CODE_OF_CONDUCT.md                     @Via-Vitae/legal @Via-Vitae/compliance
+/CONTRIBUTING.md                        @Via-Vitae/architects
+/QODER.md                               @Via-Vitae/architects @Via-Vitae/security
+/CHANGELOG.md                           @Via-Vitae/architects
+/README.md                              @Via-Vitae/architects
+
+# --- Security-sensitive application paths ------------------------------------
+**/auth/**                              @Via-Vitae/security @Via-Vitae/architects
+**/authentication/**                    @Via-Vitae/security
+**/authorization/**                     @Via-Vitae/security
+**/secrets/**                           @Via-Vitae/security
+**/crypto/**                            @Via-Vitae/security
+**/payments/**                          @Via-Vitae/security @Via-Vitae/legal
+**/donations/**                         @Via-Vitae/security @Via-Vitae/compliance
+
+# --- Infrastructure and data residency ---------------------------------------
+/terraform/                             @Via-Vitae/platform @Via-Vitae/security
+/ansible/                               @Via-Vitae/platform
+/k8s/                                   @Via-Vitae/platform @Via-Vitae/security
+*.tf                                    @Via-Vitae/platform @Via-Vitae/security
+*.tfvars                                @Via-Vitae/security
+Dockerfile                              @Via-Vitae/platform @Via-Vitae/security
+docker-compose*.yml                     @Via-Vitae/platform
+
+# --- Application source ------------------------------------------------------
+/src/                                   @Via-Vitae/architects
+*.py                                    @Via-Vitae/architects
+*.ts                                    @Via-Vitae/architects
+*.tsx                                   @Via-Vitae/architects
+*.js                                    @Via-Vitae/architects
+*.jsx                                   @Via-Vitae/architects
+
+# --- Dependencies and packaging ----------------------------------------------
+/requirements*.txt                      @Via-Vitae/architects @Via-Vitae/security
+/pyproject.toml                         @Via-Vitae/architects @Via-Vitae/security
+/uv.lock                                @Via-Vitae/architects
+/package.json                           @Via-Vitae/architects @Via-Vitae/security
+/package-lock.json                      @Via-Vitae/architects @Via-Vitae/security
+
+# --- Accessibility and internationalisation ----------------------------------
+**/locales/**                           @Via-Vitae/architects @Via-Vitae/compliance
+**/i18n/**                              @Via-Vitae/architects @Via-Vitae/compliance
+**/a11y/**                              @Via-Vitae/architects
+**/components/**                        @Via-Vitae/architects
+
+# --- Tests and quality assets ------------------------------------------------
+/tests/                                 @Via-Vitae/architects
+**/*.test.*                             @Via-Vitae/architects
+**/*.spec.*                             @Via-Vitae/architects
