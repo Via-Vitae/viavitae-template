@@ -67,7 +67,7 @@ Complete every item before the first merge to `main`. Each is verifiable by the
 | --- | --- | --- |
 | 1 | Replace `<name>` and the description in the README badge block and title. | `README.md` |
 | 2 | Set the copyright entity and confirm the EU/LT jurisdiction clause applies. | `LICENSE` |
-| 3 | Confirm `security@viavitae.com` and the scope list cover the new service. | `SECURITY.md` |
+| 3 | Confirm `journey4oflife+viavitae.security@gmail.com` and the scope list cover the new service. | `SECURITY.md` |
 | 4 | Point path rules at the directories this repository actually contains. | `.github/CODEOWNERS` |
 | 5 | Delete ecosystems that do not apply, keep the rest weekly. | `.github/dependabot.yml` |
 | 6 | Adjust the language matrix to the repository stack. | `.github/workflows/codeql.yml` |
